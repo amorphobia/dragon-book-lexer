@@ -19,9 +19,7 @@ impl<'a> Lexer<'a> {
 
     pub fn lex(&mut self) -> Result<Vec<Token>, Error> {
         let mut result = Vec::new();
-        println!("input len is {:?}", self.input.len());
         while self.start < self.input.len() {
-            println!("    start is {:?}", self.start);
             result.push(self.scan()?);
             self.skip_blank_and_comments();
         }

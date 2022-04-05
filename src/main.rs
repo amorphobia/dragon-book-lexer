@@ -15,5 +15,5 @@ fn main() {
     let mut lexer = Lexer::new(&input);
     let result = lexer.lex();
 
-    println!("{:?}", result);
+    println!("{:#?}", result);
 }

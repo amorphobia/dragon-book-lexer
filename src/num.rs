@@ -25,7 +25,8 @@ impl<'a> Lexer<'a> {
         let dot = self.input[self.start..end]
             .chars()
             .position(|c| c == '.')
-            .unwrap_or(end);
+            .unwrap_or(end - self.start)
+            + self.start;
 
         let int = &self.input[self.start..dot];
         let int = u32::from_str_radix(int, 10)?;
