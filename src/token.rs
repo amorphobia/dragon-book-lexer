@@ -5,7 +5,7 @@ pub struct Num {
     /// Integer part
     pub int: u32,
     /// Fractional part
-    pub frac: u32,
+    pub frac: (u32, usize),
     /// Exponent
     pub exp: i64,
     /// Base

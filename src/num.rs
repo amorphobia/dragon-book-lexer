@@ -13,7 +13,7 @@ impl<'a> Lexer<'a> {
         self.start = end;
         Ok(Token::NumLit(Num {
             int,
-            frac: 0,
+            frac: (0, 0),
             exp: 1,
             base: 10,
         }))
@@ -31,11 +31,11 @@ impl<'a> Lexer<'a> {
         let int = u32::from_str_radix(int, 10)?;
 
         let frac = if dot == end {
-            "0"
+            ("0", 0)
         } else {
-            &self.input[dot + 1..end]
+            (&self.input[dot + 1..end], end - dot - 1)
         };
-        let frac = u32::from_str_radix(frac, 10)?;
+        let frac = (u32::from_str_radix(frac.0, 10)?, frac.1);
         self.start = end;
         Ok(Token::NumLit(Num {
             int,
